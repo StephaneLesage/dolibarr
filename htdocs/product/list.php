@@ -1506,7 +1506,10 @@ if ($resql)
 			if (!$i) $totalarray['nbfield']++;
 		}
 		// Extra fields
+		$tmp = &$object;
+		$object = &$product_static;		// Set $object context for computed fields
 		include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_print_fields.tpl.php';
+		$object = &$tmp;
 		// Fields from hook
 		$parameters = array('arrayfields'=>$arrayfields, 'obj'=>$obj, 'i'=>$i, 'totalarray'=>&$totalarray);
 		$reshook = $hookmanager->executeHooks('printFieldListValue', $parameters); // Note that $action and $object may have been modified by hook
